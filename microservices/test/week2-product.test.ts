@@ -8,6 +8,7 @@ const notebook: Product = {
     priceSatang: 12900,
     available: true,
 };
+
 const pen: Product = {
     id: "pen",
     name: "ปากกา",
@@ -16,35 +17,37 @@ const pen: Product = {
 };
 
 test("quantity 1", () => {
-    expect(getLineTotalSatang(notebook, 1)).toBe(12900);
+  expect(getLineTotalSatang(notebook, 1)).toBe(12900);
 });
 test("quantity 2", () => {
-    expect(getLineTotalSatang(notebook, 2)).toBe(25800);
+  expect(getLineTotalSatang(notebook, 2)).toBe(25800);
 });
 test("quantity 5", () => {
-    expect(getLineTotalSatang(notebook, 5)).toBe(64500);
+  expect(getLineTotalSatang(notebook, 5)).toBe(64500);
 });
 
 test("zero quantity", () => {
-    expect(getLineTotalSatang(notebook, 0)).toBeNull();
+  expect(getLineTotalSatang(notebook, 0)).toBeNull();
 });
 test("quantity above five", () => {
-    expect(getLineTotalSatang(notebook, 6)).toBeNull();
+  expect(getLineTotalSatang(notebook, 6)).toBeNull();
 });
 
 test("fractional quantity", () => {
-    expect(getLineTotalSatang(notebook, 1.5)).toBeNull();
+  expect(getLineTotalSatang(notebook, 1.5)).toBeNull();
 });
 test("unavailable product", () => {
-    const unavailable: Product = { ...notebook, available: false };
-    expect(getLineTotalSatang(unavailable, 1)).toBeNull();
+  const unavailable: Product = { ...notebook, available: false };
+  expect(getLineTotalSatang(unavailable, 1)).toBeNull();
 });
 
 test("product remains unchanged", () => {
-    const before = { ...notebook };
-    getLineTotalSatang(notebook, 2);
-    expect(notebook).toEqual(before);
+  const before = { ...notebook };
+  getLineTotalSatang(notebook, 2);
+  expect(notebook).toEqual(before);
 });
+
 test("unavailable pen product", () => {
-    expect(getLineTotalSatang(pen, 2)).toBeNull();
+  expect(getLineTotalSatang(pen, 2)).toBeNull();
 });
+
